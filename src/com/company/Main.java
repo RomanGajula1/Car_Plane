@@ -10,23 +10,23 @@ public class Main {
         Scanner fuel = new Scanner(System.in);
         int litres = fuel.nextInt();
         Car car = new Car(litres);
-        car.fuelCheck();
+        car.hasEnoughFuel();
 
-        if (car.isFuelCheck()) {
+        if (car.isEnoughFuel()) {
             System.out.println("The engine is running? (if NO - enter 0, if YES, enter 1)");
             Scanner engine = new Scanner(System.in);
             int engineRun = engine.nextInt();
-            car.setEngineRun(engineRun);
-            car.engineCheck();
+            car.setEngineRunning(engineRun);
+            car.engineStarted();
         }
 
 
-        if (car.isFuelCheck() && car.isEngineCheck()){
+        if (car.isEnoughFuel() && car.isEngineStarted()){
             car.move();
             System.out.println("Do you want to stop transport? (if NO - enter 0, if YES, enter 1)");
             Scanner stopTransport = new Scanner(System.in);
             int stop = stopTransport.nextInt();
-            car.setStop(stop);
+            car.Stop(stop);
             car.stopTransport();
         }
 
@@ -38,18 +38,18 @@ public class Main {
         Scanner fuelPlane = new Scanner(System.in);
         int litresPlane = fuelPlane.nextInt();
         Plane plane = new Plane(litresPlane);
-        plane.fuelCheck();
+        plane.hasEnoughFuel();
 
-        if (plane.isFuelCheck()) {
+        if (plane.isHasEnoughFuel()) {
             System.out.println("The engine is running? (if NO - enter 0, if YES, enter 1)");
             Scanner enginePlane = new Scanner(System.in);
             int engineRunPlane = enginePlane.nextInt();
             plane.setEngineRun(engineRunPlane);
-            plane.engineCheck();
+            plane.engineStarted();
         }
 
 
-        if (plane.isFuelCheck() && plane.isEngineCheck()){
+        if (plane.isHasEnoughFuel() && plane.isEngineStarted()){
             plane.move();
             System.out.println("Do you want to stop transport? (if NO - enter 0, if YES, enter 1)");
             Scanner stopTransportPlane = new Scanner(System.in);

@@ -7,13 +7,13 @@ abstract public class Transport {
     public void noFuelPlane(){System.out.println("Not enough fuel!");};
     public void engineRun(){System.out.println("The engine is running!");};
     public void engineNoRun(){System.out.println("The engine no is running!");};
-    public void noCorrect(){System.out.println("You entered invalid values!");};
+    public void invalidValue(){System.out.println("You entered invalid values!");};
     public void run (){System.out.println("Transport in move!");}
     public void stop(){System.out.println("The transport stopped!");};
     public void noStop(){System.out.println("Continuing motion!");};
 
-    abstract void fuelCheck();
-    abstract void engineCheck();
+    abstract void hasEnoughFuel();
+    abstract void engineStarted();
     abstract void move();
     abstract void stopTransport();
 }

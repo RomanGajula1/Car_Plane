@@ -2,43 +2,43 @@ package com.company;
 
 public class Car extends Transport {
 
-    private int litres;
+    private int fuelQuantity;
     private int engineRun;
     private int stop;
-    private boolean engineCheck;
-    private boolean fuelCheck;
+    private boolean engineStarted;
+    private boolean EnoughFuel;
     private boolean move;
 
-    public Car(int litres){
-        this.litres = litres;
+    public Car(int fuelQuantity){
+        this.fuelQuantity = fuelQuantity;
     }
 
-    public int getLitres() {
-        return litres;
+    public int getFuelQuantity() {
+        return fuelQuantity;
     }
 
-    public void setEngineCheck(boolean engineCheck) {
-        this.engineCheck = engineCheck;
+    public void setEngineStarted(boolean engineCheck) {
+        this.engineStarted = engineCheck;
     }
 
-    public boolean isEngineCheck() {
-        return engineCheck;
+    public boolean isEngineStarted() {
+        return engineStarted;
     }
 
-    public void setEngineRun(int engineRun) {
-        this.engineRun = engineRun;
-    }
-
-    public int getEngineRun() {
+    public int getEngineRunning() {
         return engineRun;
     }
 
-    public void setFuelCheck(boolean fuelCheck) {
-        this.fuelCheck = fuelCheck;
+    public void setEngineRunning(int engineRun) {
+        this.engineRun = engineRun;
     }
 
-    public boolean isFuelCheck() {
-        return fuelCheck;
+    public void setEnoughFuel(boolean fuelCheck) {
+        this.EnoughFuel = fuelCheck;
+    }
+
+    public boolean isEnoughFuel() {
+        return EnoughFuel;
     }
 
     public void setMove(boolean move) {
@@ -49,7 +49,7 @@ public class Car extends Transport {
         return move;
     }
 
-    public void setStop(int stop) {
+    public void Stop(int stop) {
         this.stop = stop;
     }
 
@@ -58,35 +58,35 @@ public class Car extends Transport {
     }
 
     @Override
-    void fuelCheck() {
-        if (getLitres() > 0){
-            setFuelCheck(true);
+    void hasEnoughFuel() {
+        if (getFuelQuantity() > 0){
+            setEnoughFuel(true);
         } else {
             noFuel();
-            setFuelCheck(false);
+            setEnoughFuel(false);
         }
     }
 
     @Override
-    void engineCheck() {
-        if (isFuelCheck()){
-            if (getEngineRun() == 1){
+    void engineStarted() {
+        if (isEnoughFuel()){
+            if (getEngineRunning() == 1){
                 started();
                 engineRun();
-                setEngineCheck(true);
-            } else if(getEngineRun() == 0){
+                setEngineStarted(true);
+            } else if(getEngineRunning() == 0){
                 engineNoRun();
-                setEngineCheck(false);
+                setEngineStarted(false);
             } else {
-                noCorrect();
-                setEngineCheck(false);
+                invalidValue();
+                setEngineStarted(false);
             }
         }
     }
 
     @Override
     void move() {
-        if (isEngineCheck()){
+        if (isEngineStarted()){
             run();
             setMove(true);
         } else {
@@ -102,7 +102,7 @@ public class Car extends Transport {
             } else if(getStop() == 0){
                 noStop();
             } else {
-                noCorrect();
+                invalidValue();
             }
         }
     }

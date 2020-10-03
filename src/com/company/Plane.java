@@ -2,32 +2,32 @@ package com.company;
 
 public class Plane extends Transport {
 
-    private int litres;
+    private int fuelQuantity;
     private int engineRun;
     private int stop;
-    private int litresMin = 100;
-    private boolean engineCheck;
-    private boolean fuelCheck;
+    private int fuelQuantityMin = 100;
+    private boolean engineStarted;
+    private boolean hasEnoughFuel;
     private boolean move;
 
-    public Plane(int litres){
-        this.litres = litres;
+    public Plane(int fuelQuantity){
+        this.fuelQuantity = fuelQuantity;
     }
 
     public int getLitresMin() {
-        return litresMin;
+        return fuelQuantityMin;
     }
 
-    public int getLitres() {
-        return litres;
+    public int getFuelQuantity() {
+        return fuelQuantity;
     }
 
-    public void setEngineCheck(boolean engineCheck) {
-        this.engineCheck = engineCheck;
+    public void setEngineStarted(boolean engineCheck) {
+        this.engineStarted = engineCheck;
     }
 
-    public boolean isEngineCheck() {
-        return engineCheck;
+    public boolean isEngineStarted() {
+        return engineStarted;
     }
 
     public void setEngineRun(int engineRun) {
@@ -38,12 +38,12 @@ public class Plane extends Transport {
         return engineRun;
     }
 
-    public void setFuelCheck(boolean fuelCheck) {
-        this.fuelCheck = fuelCheck;
+    public void setHasEnoughFuel(boolean fuelCheck) {
+        this.hasEnoughFuel = fuelCheck;
     }
 
-    public boolean isFuelCheck() {
-        return fuelCheck;
+    public boolean isHasEnoughFuel() {
+        return hasEnoughFuel;
     }
 
     public void setMove(boolean move) {
@@ -63,35 +63,35 @@ public class Plane extends Transport {
     }
 
     @Override
-    void fuelCheck() {
-        if (getLitres() > getLitresMin()){
-            setFuelCheck(true);
+    void hasEnoughFuel() {
+        if (getFuelQuantity() > getLitresMin()){
+            setHasEnoughFuel(true);
         } else {
             noFuelPlane();
-            setFuelCheck(false);
+            setHasEnoughFuel(false);
         }
     }
 
     @Override
-    void engineCheck() {
-        if (isFuelCheck()){
+    void engineStarted() {
+        if (isHasEnoughFuel()){
             if (getEngineRun() == 1){
                 started();
                 engineRun();
-                setEngineCheck(true);
+                setEngineStarted(true);
             } else if(getEngineRun() == 0){
                 engineNoRun();
-                setEngineCheck(false);
+                setEngineStarted(false);
             } else {
-                noCorrect();
-                setEngineCheck(false);
+                invalidValue();
+                setEngineStarted(false);
             }
         }
     }
 
     @Override
     void move() {
-        if (isEngineCheck()){
+        if (isEngineStarted()){
             run();
             setMove(true);
         } else {
@@ -107,7 +107,7 @@ public class Plane extends Transport {
             } else if(getStop() == 0){
                 noStop();
             } else {
-                noCorrect();
+                invalidValue();
             }
         }
     }
